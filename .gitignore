@@ -1,0 +1,25 @@
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore environment variables
+.env
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# VSCode settings (optional, if you don't want to track editor-specific settings)
+.vscode/
+
+# Ignore data/output folders if they contain large or generated files
+faiss_index/
+Images/
+Videos/
+
+# Ignore temporary or backup files
+*.log
+*.tmp
+*.bak
+*.swp
