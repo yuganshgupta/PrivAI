@@ -10,8 +10,12 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
+
+
+
 # VSCode settings (optional, if you don't want to track editor-specific settings)
 .vscode/
+.faiss_index/
 
 
 # Ignore temporary or backup files
@@ -22,3 +26,8 @@ Thumbs.db
 
 #Ignore test.py its for testing purposes and for experimental ui changes
 test.py 
+
+# Ignore the index files
+faiss_index
+faiss_index/index.faiss
+faiss_index/index.pkl

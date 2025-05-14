@@ -47,25 +47,11 @@ def get_vector_store(text_chunks):
 #Create the prompt and import the model
 def get_conversational_chain():
     prompt_template= """
-    You are an expert academic summarizer and question-answering assistant.
-
-    Your primary task is to read the provided document context and answer the user’s question with a clear, concise, and technically accurate response.
-
-    Instructions:
-    - First, try to find the answer only within the provided context.
-    - If relevant content is found, generate a well-structured response, preferably in bullet points for clarity if the topic is academic.
-    - Use precise terminology and avoid over-simplifying technical concepts.
-    - If the answer is not explicitly found in the context, you may reason using general knowledge to help the user — but clearly mention that the specific information was not found in the document.
-
-    Fallback behavior:
-    If the content appears missing, incomplete, or unrelated to the query, begin your response with:
-    *"Note: The provided context does not fully answer the question. Here's an informed response based on general knowledge."*
-
-    Context:
-    {pdf_text}
-
-    User's Question:
-    {user_question}
+    You are an expert youtube video summarizer and your role is to answer the question as detailed as possible from the provided context, 
+    make sure to provide all the details, if the answer is not in provided context just say, 
+    "Modify your question to find the related content in the video", try to answer it using the common sense and ,you will get $100 as tip if you provided good answer\n\n
+    Context:\n {context}?\n
+    Question:\n {question}\n
 
     Answer: 
     """
@@ -129,33 +115,11 @@ def genrate_yt_content(transcript_text,prompt):
 #Function to create the Q&A model for youtube video    
 def get_text_and_conversational_chain():
     prompt_template= """
-    You are an expert YouTube transcript summarizer and question answerer.
-
-    Your primary task is to answer the user's question using the **provided transcript**. If the transcript contains enough information, base your answer **strictly** on it, and provide a clear, detailed, and structured explanation.
-
-    However, if the transcript appears **incomplete, unclear, or missing relevant information**, do not stop there. Instead:
-
-    - Try to **infer the answer using general knowledge**, common sense, and logical reasoning based on the **video’s topic or context**.
-    - If you do this, clearly mention that your answer is inferred and **not directly found in the transcript**.
-
-    Use this fallback message only if the question cannot be answered even after using both transcript and reasoning:
-    > "This specific question couldn't be answered from the transcript or general context. You may try rephrasing it or checking another part of the video."
-
-    Tone:
-    - Be helpful, professional, and insightful.
-    - Encourage the user if they may need to refine or redirect their question.
-
-    Transcript:
-    {transcript_text}
-
-    User's Question:
-    {user_question}
-
-    Transcript:
-    {transcript_text}
-
-    User's Question:
-    {question}
+    You are an expert youtube video summarizer and your role is to answer the question as detailed as possible from the provided context, 
+    make sure to provide all the details, if the answer is not in provided context just say, 
+    "If the transcript doesn’t directly answer the question, try to respond using both the provided context and relevant general knowledge. Do not guess inaccurately. You’ll earn a $100 tip for delivering a high-quality, helpful answer!”\n\n
+    Context:\n {context}?\n
+    Question:\n {question}\n  
     Answer: 
     """
     model=ChatGoogleGenerativeAI(model="gemini-2.0-flash",temperature=0.3)
