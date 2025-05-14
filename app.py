@@ -182,59 +182,6 @@ def home_page():
            
     
 
-    # st.divider()
-    # st.markdown("""## <span style='color:#9D801C'>Services Usage Demo</span>""", unsafe_allow_html=True)
-    # st.divider()
-    # Text_chat,Image_chat,PDF_chat,Video_chat=st.columns(4,gap="large")
-    # with Text_chat:
-    #     st.markdown("""
-    #         ###          
-    #         <span style='color:#0D7177'>  📝 **Navigate to TEXT CHAT** : Here user input their message to get the response this will genrate the Text based results, 
-    #                     The text-based responses provided by our AI system are intended for informational purposes only. They are not a substitute for professional advice, 
-    #                     consultation, or services. If you require specific assistance or guidance in areas such as medical, legal, financial, or other specialized domains, 
-    #                     we recommend consulting qualified professionals.</span>""", unsafe_allow_html=True)
-    #     st.divider()
-    #     st.markdown("**Please watch the Demo**")
-    #     st.video(r"Videos/Textchat.mp4")
-       
-    # with Image_chat:
-    #     st.markdown("""
-    #         ###                            
-    #         <span style='color:#34786A'>  🛣️ **Navigate to IMAGE CHAT**: Here user will provide the images and ask the AI system to query,IMAGE based results 
-    #                     The Gemini model integrates the information extracted from images with language understanding to provide contextually relevant 
-    #                     and informative responses.While our AI system aims to provide informative and engaging responses, 
-    #                     users should verify the information provided, especially in critical or sensitive situations.User can extract the content in the image
-    #                 </span>""", unsafe_allow_html=True)
-    #     st.divider()
-    #     st.markdown("**Please watch the Demo**")
-    #     st.video(r"Videos/Imagechat.mp4")
-
-    # with PDF_chat:
-    #     st.markdown("""
-    #         ###           
-    #         <span style='color:#365B4F'>  📚 **Navigate PDF CHAT**: Here user will upload the pdf and submit to process the pdf to convert into text,
-    #                     and ask your question the AI system will genrate the answer based on avilable context,
-    #                     Our Q&A model is designed to analyze PDF documents and extract valuable information to answer your questions accurately. 
-    #                     The Gemini model leverages the content within PDFs to generate contextually relevant responses to your inquiries</span>""", unsafe_allow_html=True)
-    #     st.divider()
-    #     st.markdown("**Please watch the Demo**")
-    #     st.video(r"Videos/PDFchat.mp4")
-        
-
-    # with Video_chat:
-    #     st.markdown("""
-    #         ###                       
-    #         <span style='color:#2A5D87'>  📽️ **Navigate to VIDEO CHAT**: Here user will provide the youtube video link to extract the content from 
-    #                     video and ask the question about the video, our AI system will genrate the answer based on the available context.
-    #                     Our Q&A model is designed to analyze video content and extract valuable information to answer your questions accurately. 
-    #                     The Gimini model leverages the visual and auditory context within videos to generate contextually relevant responses
-    #                     to your inquiries.  </span>
-    #         """, unsafe_allow_html=True)
-    #     st.divider()
-    #     st.markdown("**Please watch the Demo**")
-    #     st.video(r"Videos/Videochat.mp4")
-
-
 
 # TESTING PROTTYPE FOR PDF CHAT
 def build_chat_history_prompt(chat_history, current_question):
@@ -339,60 +286,6 @@ def chat_with_multipdf():
 # ENDS HERE
 
 
-#Function to chat with pdf documents
-# def chat_with_multipdf():
-
-#     #Initialize the session for chat
-#     if "chat_history_pdf" not in st.session_state:
-#         st.session_state.chat_history_pdf = []
-
-#     st.header("Multi-PDF's 📚 - Chat Agent 🤖 ")
-#     st.markdown("""<span style='color:#EE8E8E'>(Once you Click on the Home button 🏠 your chat history will be **Deleted**)</span>""", unsafe_allow_html=True)
-
-#     #Take the user input
-#     user_question=st.chat_input(placeholder="Ask a Question from the PDF Files uploaded .. ✍️📝")
-
-#     with st.chat_message("user"):
-#             st.markdown("Once the PDF is  uplodaded please write your question 👇")
-
-#     #Genrate the response 
-#     if user_question: 
-#         with st.spinner('Please wait Generating answer.....📖'):
-#             user_input(user_question)
-    
-#              #   Append question and answer to chat history
-#             st.session_state.chat_history_pdf.append({"role": "user", "content": user_question})
-#             st.session_state.chat_history_pdf.append({"role": "assistant", "content": st.session_state.response}) 
-
-#                 # Display chat history
-#     for message in st.session_state.chat_history_pdf:
-#         with st.chat_message(message["role"]):
-#             st.markdown(message["content"]) 
-
-#     #Take the PDF documents from the user                 
-#     with st.sidebar:
-#         st.title("📁 PDF File's Section")
-#         lottie_hi = load_lottiefiles(r'Images/PDF.json')
-#         st_lottie(
-#             lottie_hi, loop=True, quality="high", speed=1.65, key=None, height=100)
-#         st.divider()
-#         pdf_docs = st.file_uploader("Upload your PDF Files & \n Click on the Submit & Process Button ")
-
-#         if pdf_docs is not None:
-#             if not pdf_docs.name.endswith('.pdf'):
-#                 st.warning("Uploaded file is not PDF format,Please upload a PDF file.")
-#             elif st.button("Submit & Process"):
-#                 with st.status("Processing....",expanded=True) as status:
-#                     st.write("Extracting Text...")
-#                     time.sleep(2)
-#                     st.write("Converting Text into emmeddings")
-#                     time.sleep(1)
-#                     st.write("Storing all the chunks")
-#                     time.sleep(1)
-#                     status.update(label="Sucessfully processed", state="complete", expanded=False)
-#                     raw_text = get_pdf_text(pdf_docs)
-#                     text_chunks= get_text_chunks(raw_text)
-#                     get_vector_store(text_chunks)  
 
 #TESTING CHAT FUNCTIONALITY 
 def build_chat_history_prompt(chat_history, current_question):
@@ -466,56 +359,6 @@ def text_chat():
 #TESTING SECTION ENDS HERE
 
         
-#Function to text based response genration                   
-# def text_chat():
-
-#     st.header("Your AI powered Chat Agent 🤖 ")
-#     st.markdown("""<span style='color:#EE8E8E'>(Once you Click on the Home button 🏠 your chat history will be **Deleted**)</span>""", unsafe_allow_html=True)
-
-#     with st.chat_message("user"):
-#         st.markdown("Hi I am your AI chat Bot Ask me anything 👍")
-
-#     #Initialize the session for chat
-#     if "chat_history" not in st.session_state:
-#         st.session_state.chat_history =[]
-
-#         # Display chat messages from history on app rerun
-#     for message in st.session_state.chat_history:
-#         with st.chat_message(message["role"]):
-#             st.markdown(message["content"])   
-
-#     if prompt := st.chat_input("Ask a Question your AI chat Agent ✍️"):
-#             # Add user message to chat history
-#         st.session_state.chat_history.append({"role": "user", "content": prompt})
-#             # Append the dialogue history to the user's prompt
-#         question = "\n".join([message["content"] for message in st.session_state.chat_history])
-#             # Display user message in chat message container
-#         with st.chat_message("user"):
-#             st.markdown(prompt)
-#             # Display assistant response in chat message container
-#         with st.spinner('Generating response....'):
-#             with st.chat_message("assistant"):
-#                 try:
-#                     for response in get_gimini_response_txt(question):
-#                         full_response=""
-#                         for chunk in response:
-#                                 full_response += chunk.text + " "
-#                                 st.markdown(full_response)
-#                                 # Check if there are follow-up questions
-#                                 if "?" in prompt:
-#                                 # Update the chat history with the assistant's response
-#                                     st.session_state.chat_history.append({"role": "assistant", "content": full_response}) 
-#                                 # Clear the chat input box
-#                                     st.session_state.prompt = ""
-#                                 # Set the chat input box value to the assistant's response
-#                                     st.chat_input("Follow-up question", value=full_response)
-#                             # Update the chat history
-#                                 st.session_state.chat_history.append({"role": "assistant", "content": full_response})
-#                 except Exception as e:
-#                     st.error(f"An error occurred during response generation: {str(e)}")
-#                 # Update the chat history with the error message
-#                     st.session_state.chat_history.append({"role": "assistant", "content": f"An error occurred: {str(e)}"})
-
 #Functions to genrate the response based on the image
 def chat_with_image():
     #Initialize the session for chat
@@ -736,89 +579,6 @@ def chat_video():
 # TEST ENDS HERE
 
 
-#Function to video summary and Q&A model
-# def chat_video():
-
-#     #Initialize the empty varible to store the texts
-#     transcript_text1=""
-
-#     st.header("Youtube Video Summarizer 📽️ - Chat Agent 🤖 ")
-#     st.markdown("""<span style='color:#EE8E8E'>(Once you Click on the Home button 🏠 your chat history will be **Deleted**)</span>""", unsafe_allow_html=True)
-
-#     #Functions to chat with video summary
-#     def chatbot():
-#         #Intialize the session
-#         if "chat_history_video" not in st.session_state:
-#             st.session_state.chat_history_video = []
-
-#         with st.chat_message("user"):
-#                     st.markdown("Once the Text extracted from video is sucecssfull, please write your question 👇")
-#         #Take the user input
-#         user_question=st.chat_input(placeholder="Ask a Question from the video summarizer .. ✍️📝")   
-#         #Genrate the response 
-#         if user_question:
-#             with st.spinner('Please wait Generating answer.....📹'): 
-#                 user_query(user_question)
-                
-#                         #   Append question and answer to chat history
-#                 st.session_state.chat_history_video.append({"role": "user", "content": user_question})
-#                 st.session_state.chat_history_video.append({"role": "assistant", "content": st.session_state.response}) 
-
-#                             # Display chat history
-#         for message in st.session_state.chat_history_video:
-#             with st.chat_message(message["role"]):
-#                 st.markdown(message["content"])
-#     #Function to video summary and display the summary
-#     def video_summar():
-#         nonlocal transcript_text1
-#         if "summary_video" not in st.session_state:
-#             st.session_state.summary_video = []
-#         if transcript_text1:
-#             summary=genrate_yt_content(transcript_text,prompt)
-#             st.markdown("## Video Summary:")
-#             st.session_state.summary_video.append(summary)
-#         #Display the video summary
-#         for summ in st.session_state.summary_video:
-#             st.markdown(summ)
-
-#     #Take the video url and extrat the texts
-#     with st.sidebar:
-#         st.title("📁 Video URL Section")
-#         lottie_hi = load_lottiefiles(r'Images/Video.json')
-#         st_lottie(
-#                 lottie_hi, loop=True, quality="high", speed=1.65, key=None, height=250)
-#         st.divider()
-#         youtube_link=st.text_input("Enter the Youtube video Link & Click on the Detail Summary")
-#         button=st.button("Get the Detail Summary")
-#         if button:
-#             if 'youtube.com' not in youtube_link:
-#                 st.warning("This in the not YouTube video URL,Please upload a correct YouTube video URL.")
-#             else:
-#                 video_id=youtube_link.split("=")[1].split('&')[0]
-#                 st.image(f"http://img.youtube.com/vi/{video_id}/0.jpg",use_column_width=True)
-#                 with st.status("Processing....",expanded=True) as status:
-#                     st.write("Extracting Text")
-#                     time.sleep(2)
-#                     st.write("Emmeddings Text")
-#                     time.sleep(4)
-#                     st.write("Creating Summary")
-#                     time.sleep(2)
-#                     st.write("This will Take a while")
-#                     time.sleep(2)
-#                     status.update(label="Wait till Video Summary genration", state="running", expanded=False)
-#                     transcript_text=extract_transcript_details(youtube_link)
-#                     transcript_text1 += transcript_text
-#                     text_chunks= get_text_chunks(transcript_text)
-#                     get_vector_store(text_chunks)
-
-#     #Options to swt btw video summary and chat Bot
-#     selected=st.radio(" ",["Video Summary",":rainbow[**Chat with Bot**]"],horizontal=True)
-
-#     if selected == 'Video Summary':
-#         video_summar()  
-#     else:
-#         chatbot()
-
 #Function to clear the history               
 def clear_chat_history():
         # Clear chat history when user selects an option other than "Home page"
@@ -832,24 +592,25 @@ def clear_chat_history():
 def main():
     selected = option_menu(
         menu_title=None,
-        options=["HOME","TEXT CHAT", "IMAGE CHAT" ,"PDF CHAT","VIDEO CHAT",],
-        icons=['house',"pen" ,'image','book','camera-video'],
+        options=["HOME", "TEXT CHAT", "IMAGE CHAT", "PDF CHAT", "VIDEO CHAT"],
+        icons=['house', "pen", 'image', 'book', 'camera-video'],
         default_index=0,
         menu_icon='user',
         orientation="horizontal",
         styles={
-            "container": {"padding": "0!important", "background-color": "#DCE669"},
-            "icon": {"color": "orange", "font-size": "25px"},
+            "container": {"padding": "0.3rem", "border-radius": "10px"},
+            "icon": {"font-size": "20px"},
             "nav-link": {
                 "font-size": "15px",
-                "text-align": "left",
+                "text-align": "center",
                 "margin": "0px",
-                "--hover-color": "#E0EEEE",
+                "--hover-color": "rgba(0,0,0,0.1)",
             },
-            "nav-link-selected": {"background-color": "#458B74"},
+            "nav-link-selected": {},
         },
-    )     
-#When user select the option functions will selected
+    )
+    
+    # When user selects an option, functions will be selected
     if selected == "PDF CHAT":
         chat_with_multipdf()
     elif selected == "TEXT CHAT":
@@ -860,10 +621,11 @@ def main():
         chat_video()
     else:
         clear_chat_history()
-        home_page()      
+        home_page()
 
 if __name__ == "__main__":
     main()
+
 
 st.markdown(
         """

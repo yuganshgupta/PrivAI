@@ -19,3 +19,6 @@ Thumbs.db
 *.tmp
 *.bak
 *.swp
+
+#Ignore test.py its for testing purposes and for experimental ui changes
+test.py 
