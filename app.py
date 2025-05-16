@@ -19,6 +19,7 @@ from PIL import Image
 import  google.generativeai as genai
 from io import BytesIO
 from youtube_transcript_api import YouTubeTranscriptApi
+from urllib.parse import urlparse, parse_qs
 
 #Gemini API configration
 load_dotenv()
@@ -97,14 +98,29 @@ prompt="""You are an expert youtube summarizer.Produce a detailed summary of the
 #Function to extract the texts from youtube
 def extract_transcript_details(youtube_video_url):
     try:
-        video_id=youtube_video_url.split("=")[1]
-        transcript_text=YouTubeTranscriptApi.get_transcript(video_id)
-        transcript=""
-        for i in transcript_text:
-            transcript += i['text']
+        # Handle different YouTube URL formats
+        query = urlparse(youtube_video_url)
+        if "youtu.be" in youtube_video_url:
+            video_id = query.path[1:]  # youtu.be/<video_id>
+        else:
+            video_id = parse_qs(query.query).get("v", [None])[0]
+
+        if not video_id:
+            st.error("⚠️ Invalid YouTube URL. Please enter a full video link.")
+            return None
+
+        # Attempt to fetch the transcript
+        transcript_chunks = YouTubeTranscriptApi.get_transcript(video_id)
+        transcript = " ".join([chunk['text'] for chunk in transcript_chunks])
         return transcript
+
     except Exception as e:
-        raise e
+        st.warning(
+            "🚫 Could not retrieve transcript from YouTube.\n\n"
+            "This is likely due to IP restrictions on Streamlit Cloud. "
+            "Please upload the transcript manually instead."
+        )
+        return None
 
 #Function to genrate the youtube summary   
 def genrate_yt_content(transcript_text,prompt):
